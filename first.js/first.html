@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlight HTML Content</title>
+<style>
+  .highlight {
+    background-color: rgb(0, 85, 255);
+  }
+</style>
+</head>
+<body>
+<p><span>Hi David<br><br>Headline: Energix Closes $520 Million Financing and Tax Equity Deal to Fund New Solar Projects<br><br>Summary: Two deals with Morgan Stanley Renewables Inc. and Santander CIB will help finance the construction and operation of six utility Equity scale solar…<br><br>Read the full article <a href="https://content.seleritycorp.com/hosted/assets/www/UKMW47_hYz_RGzPSpHm44Hi1L49HdNBhs1OkKKW2OPI">here</a><br><br>-------------------------------------<br><br>You received this because you are subscribed to news related to <a href="https://iris.steeleye.co/market/instruments?search=ES0113900J37">ES0113900J37</a>, and this story was marked as 82% relevant.<br><br>Copyright of PR Newswire. All Rights Reserved. Terms and Conditions | Privacy Policy. To stop PR Newswire emails from getting removed by email filters please add our address (noreply@prnewswire.com) to your email address book. Registered Office: 3 Spring Mews, London SE11 5AN. Tel: +44 (0) 207 8405100. <br><br>To unsubscribe change your email preferences, please click <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley">here</a>.<br><br>-------------------------------------<br><br><img src="https://context.seleritycorp.com/selerity/assets/sc_icons/pressRelease.png" alt="Rick Astley" style="width:100px;height:100px;"></span></p>
+
+<script>
+function highlightHTMLContent(htmlContent, plainText, plainTextPositions) {
+    let highlightedPositions = [];
+
+
+for (const position of plainTextPositions) {
+  const startOffset = plainText.substring(0, position.start).length;
+  const endOffset = plainText.substring(0, position.end + 1).length;
+  highlightedPositions.push({
+    start: startOffset,
+    end: endOffset,
+  });
+}
+
+
+highlightedPositions.sort((a, b) => b.start - a.start);
+
+
+for (const position of highlightedPositions) {
+  const startTag = '<span class="highlight">';
+  const endTag = '</span>';
+  const start = position.start;
+  const end = position.end;
+
+  htmlContent =
+    htmlContent.slice(0, start) +
+    startTag +
+    htmlContent.slice(start, end) +
+    endTag +
+    htmlContent.slice(end);
+}
+
+return htmlContent;
+}
+
+const htmlContent = '<p><span><mark> Food is any substance consumed by an organism for nutritional support. Food is usually of plant, animal, or fungal origin and contains essential nutrients such as carbohydrates, fats, proteins, vitamins, or minerals. The substance is ingested by an organism and assimilated by the organisms cells to provide energy, maintain life, or stimulate growth. Different species of animals have different feeding behaviours that satisfy the needs of their metabolisms and have evolved to fill a specific ecological niche within specific geographical contexts<mark></span></p>'; 
+const plainText = 'Omnivorous humans are highly adaptable and have adapted to obtain food in many different ecosystems. The majority of the food energy required is supplied by the industrial food industry, which produces food through intensive agriculture and distributes it through complex food processing and food distribution systems.'; // 
+const plainTextPositions = [
+  { start: 241, end: 247 },
+  { start: 518, end: 525 },
+]; 
+
+const highlightedContent = highlightHTMLContent(
+  htmlContent,
+  plainText,
+  plainTextPositions
+);
+
+document.body.innerHTML = highlightedContent;
+</script>
+</body>
+</html>
